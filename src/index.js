@@ -1,10 +1,14 @@
 const express = require("express");
 const connect = require("./config/database");
 
-const TweetRepository = require("./repository/tweet-repository");
-const Comment= require('./models/comment')
 
-const Tweet = new TweetRepository();
+//Importing modules
+
+const TweetService = require("./services/tweet-service")
+
+const tweetService =  new TweetService();
+
+
 
 const {PORT} = require('./config/serverConfig')
 console.log(PORT)
@@ -25,19 +29,25 @@ const serverSetupandStart = async () => {
       .catch((err) => {
         console.log(err);
       });
+
+
+      app.get('/', async(req,res)=>{
+
+        const createTweet = await  tweetService.create({content : "Exploring a beautiful #beach #sunset #Dusk #wordl #viratkohli #india #pakistan"})
+
+        // console.log(createTweet);
+
+        return res.json({
+          data : createTweet
+        })
+
+      })
+
+
+
+
+
   });
-
-  // const tweet = await Tweet.create({
-  //   content : "This is my first tweet",
-  //   userEmail : "alok@google.com"
-  // })
-  // console.log(tweet)
-
-  // const fetchTweet = await Tweet.get('6534120897be3031df3d2112')
-  // console.log(fetchTweet) 
-
-
-
 };
 
 serverSetupandStart();

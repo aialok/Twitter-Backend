@@ -17,14 +17,14 @@ const tweetSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-tweetSchema.set("toObject", { virtuals: true });
-tweetSchema.set("toJSON", { virtuals: true });
+// tweetSchema.set("toObject", { virtuals: true });
+// tweetSchema.set("toJSON", { virtuals: true });
 
-tweetSchema.pre("save", function (next) {
-  console.log("Before saving Hooks");
-  this.content = this.content + "adding between the middleware";
-  next();
-});
+// tweetSchema.pre("save", function (next) {
+//   console.log("Before saving Hooks");
+//   this.content = this.content + "adding between the middleware";
+//   next();
+// });
 
 // tweetSchema.post('find', function post(next){
 //     console.log("After saving hooks")
