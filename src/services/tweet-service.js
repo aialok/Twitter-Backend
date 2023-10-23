@@ -1,4 +1,4 @@
-import{ TweetRepository , HashtagRepository} from "../repository/index.js";
+import { TweetRepository, HashtagRepository } from "../repository/index.js";
 
 class TweetService {
   constructor() {
@@ -10,7 +10,7 @@ class TweetService {
     const content = data.content;
     var regex = /#\w+/g;
     let tags = content.match(regex);
-    tags = tags.map((tag) => tag.substring(1));
+    tags = tags.map((tag) => tag.substring(1)).map((tag) => tag.toLowerCase());
 
     const newHashtag = [];
 
@@ -18,19 +18,13 @@ class TweetService {
 
     for (const tag of tags) {
       const existingHashtag = await this.hashtagRepository.findtags(tag);
-
-      // console.log(existingHashtag )
-
       if (!existingHashtag) {
         newHashtag.push({
           hashtag: tag,
           tweets: tweet.id,
         });
       } else {
-        const updateTags = await this.hashtagRepository.updateTags(
-          existingHashtag._id,
-          tweet._id
-        );
+        await this.hashtagRepository.updateTags(existingHashtag._id, tweet._id);
       }
     }
 
@@ -40,12 +34,12 @@ class TweetService {
     }
 
     const response = {
-        data: tweet,
-        success: "True",
-        err : {}
-    }
-
-    return response
+      data: tweet,
+      success: "True",
+      err: {},
+    };
+           
+    return response;
   }
 }
 

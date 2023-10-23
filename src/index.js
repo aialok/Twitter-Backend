@@ -22,7 +22,7 @@ const serverSetupandStart = async () => {
     app.get("/", async (req, res) => {
       const createTweet = await tweetService.create({
         content:
-          "This tweet is for checking #checking #india #pakistan #beach #beach",
+          "Checking out toLowerCase() #toLOWER",
         tweets: [],
       });
 
