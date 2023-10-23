@@ -1,23 +1,12 @@
-const express = require("express");
-const connect = require("./config/database");
+import express from "express";
+import connect from "./config/database.js";
 
+import TweetService from "./services/tweet-service.js";
 
-//Importing modules
-
-const TweetService = require("./services/tweet-service")
-
-const tweetService =  new TweetService();
-
-
-
-const {PORT} = require('./config/serverConfig')
-console.log(PORT)
-
-
+//Instances
+const tweetService = new TweetService();
 const app = express();
-
-// const Tweet = require("./models/tweet");
-
+const PORT = process.env.PORT
 const serverSetupandStart = async () => {
   app.listen(PORT, async (req, res) => {
     console.log(`server started on port ${PORT}`);
@@ -30,23 +19,17 @@ const serverSetupandStart = async () => {
         console.log(err);
       });
 
+    app.get("/", async (req, res) => {
+      const createTweet = await tweetService.create({
+        content:
+          "This tweet is for checking #checking #india #pakistan #beach #beach",
+        tweets: [],
+      });
 
-      app.get('/', async(req,res)=>{
-
-        const createTweet = await  tweetService.create({content : "Exploring a beautiful #beach #sunset #Dusk #wordl #viratkohli #india #pakistan"})
-
-        // console.log(createTweet);
-
-        return res.json({
-          data : createTweet
-        })
-
-      })
-
-
-
-
-
+      return res.json({
+        data: createTweet,
+      });
+    });
   });
 };
 

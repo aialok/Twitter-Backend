@@ -1,5 +1,9 @@
-module.exports = {
-  Hashtag: require("./hashtags"),
-  Tweet: require("./tweet"),
-  Comment: require("./comment"),
+import Comment from "./comment.js";
+import Hashtag from "./hashtags.js";
+import Tweet from "./tweet.js";
+
+export default {
+  Comment,
+  Hashtag,
+  Tweet,
 };
