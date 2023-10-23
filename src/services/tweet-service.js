@@ -38,7 +38,14 @@ class TweetService {
     if (newHashtag.length != 0) {
       await this.hashtagRepository.create(newHashtag);
     }
-    return newHashtag;
+
+    const response = {
+        data: tweet,
+        success: "True",
+        err : {}
+    }
+
+    return response
   }
 }
 
