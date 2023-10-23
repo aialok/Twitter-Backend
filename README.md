@@ -9,6 +9,7 @@
 - We can comment on a comment
 - We can like any comment also
 - Retweeting
+- Search for User Profile
 
 - User profiles
     - Name
@@ -18,3 +19,13 @@
 
 - Pagination on tweets
 - User auth
+
+
+- Version 2.O
+    - Tweet Impression
+    - Public and Private
+    - Verified Badge
+    - Every Tweet can have Hashtag (Regular expression)
+    - User can Chat (Socket Connection)
+
+ 
