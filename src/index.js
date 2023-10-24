@@ -47,14 +47,14 @@ const serverSetupandStart = async () => {
       
       
 
-      const createLike = await likeService.toggleLike('65367ac9e69ac4e11e9cded3', 'Tweet', '65377326034f8869e80ec3d7');
+      // const createLike = await likeService.toggleLike('65367ac9e69ac4e11e9cded3', 'Tweet', '65377326034f8869e80ec3d7');
 
-      console.log(createLike);
+      // console.log(createLike);
 
-      const likeRepository = new LikeRepository()
+      // const likeRepository = new LikeRepository()
 
-      const findLike = await likeRepository.getAll({});
-      console.log(findLike);
+      // const findLike = await likeRepository.getAll({});
+      // console.log(findLike);
 
 
 
