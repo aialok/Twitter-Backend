@@ -1,17 +1,14 @@
 import Tweet from "../models/tweet.js";
 import dotenv from "dotenv";
+import CrudRepository from "./crud-repository.js";
 dotenv.config();
-class TweetRepository {
-  async create(data) {
-    try {
-      const tweet = await Tweet.create(data);
-      return tweet;
-    } catch (error) {
-      console.log("Error in repository layer", error);
+class TweetRepository extends CrudRepository {
+  
+    constructor(){
+      super(Tweet);
     }
-  }
 
-  async get(id) {
+  async getWithComments(id) {
     try {
       const tweet = await Tweet.findById(id)
         .populate({ path: "comments" })
@@ -22,23 +19,6 @@ class TweetRepository {
     }
   }
 
-  async update(id, data) {
-    try {
-      const response = await Tweet.findByIdAndUpdate(id, data);
-      return response;
-    } catch (error) {
-      console.log("Error in repository layer", error);
-    }
-  }
-
-  async destroy(id) {
-    try {
-      const response = await Tweet.findByIdAndDelete(id);
-      return response;
-    } catch (error) {
-      console.log("Error in repository layer", error);
-    }
-  }
 
   async getAll(offset, limit) {
     try {

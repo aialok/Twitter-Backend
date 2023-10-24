@@ -1,3 +1,5 @@
+
+
 class CrudRepository {
   constructor(model) {
     this.model = model;
@@ -41,7 +43,7 @@ class CrudRepository {
 
   async getAll(){
       try {
-          const result = await this.model.find({});
+          const result = await this.model.find({}).populate( {path : 'user'}).populate({path :'likeable'});
           return result;
       } catch (error) {
         console.log("Something went wrong in the crud Repository");
@@ -49,7 +51,7 @@ class CrudRepository {
       }
   }
 
-  async update(data) {
+  async update(id,data) {
     try {
 
         const result = await this.model.findByIdAndUpdate(id,data, {new : true})
