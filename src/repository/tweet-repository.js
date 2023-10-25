@@ -3,22 +3,23 @@ import dotenv from "dotenv";
 import CrudRepository from "./crud-repository.js";
 dotenv.config();
 class TweetRepository extends CrudRepository {
-  
-    constructor(){
-      super(Tweet);
-    }
+  constructor() {
+    super(Tweet);
+  }
 
   async getWithComments(id) {
     try {
       const tweet = await Tweet.findById(id)
-        .populate({ path: "comments" })
-        .lean();
+        .populate({
+          path: "comments",
+          populate: { path: "comments", populate: { path: "user" } },
+        }).lean();
+       
       return tweet;
     } catch (error) {
       console.log("Error in repository layer", error);
     }
   }
-
 
   async getAll(offset, limit) {
     try {

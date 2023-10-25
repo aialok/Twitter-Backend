@@ -33,7 +33,7 @@ class CrudRepository {
     try {
 
         const result = await this.model.findById(id);
-        return result.populate({path : "likes"});
+        return result;
 
     } catch (error) {
       console.log("Something went wrong in the crud Repository");

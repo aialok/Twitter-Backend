@@ -12,6 +12,30 @@ export const createTweet = async (req, res) => {
       err: {},
     });
   } catch (error) {
-    console.log("There is error in controller", error);
+     return res.status(200).json({
+        data : {},
+        success: true,
+        message : "Internal server error failed to create a tweet",
+        err : {error}
+     })
   }
 };
+
+export const getTweet = async (req,res)=>{
+   try {
+      const response = await tweetService.getTweet(req.params.id);
+      return res.status(201).json({
+        data: response,
+        success: true,
+        message: "Successfully fetched a Tweet",
+        err: {},
+      });
+   } catch (error) {
+    return res.status(200).json({
+      data : {},
+      success: true,
+      message : "Internal server error failed to fetch a tweet",
+      err : {error}
+   })
+   }
+}
