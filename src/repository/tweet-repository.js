@@ -29,6 +29,16 @@ class TweetRepository extends CrudRepository {
       console.log("Error in repository layer", error);
     }
   }
+
+  async findTweetByUserId(userId) {
+    try {
+      const tweet = await Tweet.find({ user: userId }).lean();
+      return tweet;
+    } catch (error) {
+      console.log("Error in repository layer", error);
+    }
+  }
+
 }
 
 export default TweetRepository;

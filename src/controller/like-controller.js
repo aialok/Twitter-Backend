@@ -5,7 +5,7 @@ const likeService= new LikeService();
 const toggleLike= async (req,res)=>{
 
     try {   
-        const response = await likeService.toggleLike(req.query.modelId, req.query.modelType, req.query.userId);
+        const response = await likeService.toggleLike(req.query.modelId, req.query.modelType, req.user.id);
 
         return res.status(201).json({
             data : response,

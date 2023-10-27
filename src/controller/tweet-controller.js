@@ -1,3 +1,4 @@
+import { get } from "mongoose";
 import TweetService from "../services/tweet-service.js";
 
 const tweetService = new TweetService();
@@ -45,3 +46,23 @@ export const getTweet = async (req,res)=>{
    })
    }
 }
+
+export const getTweetByUserId = async (req,res)=>{
+    try {
+       const response = await tweetService.findTweetByUserId(req.user.id);
+       return res.status(201).json({
+         data: response,
+         success: true,
+         message: "Successfully fetched a Tweet",
+         err: {},
+       });
+    }
+    catch (error) {
+     return res.status(200).json({
+       data : {},
+       success: true,
+       message : "Internal server error failed to fetch a tweet",
+       err : {error}
+    })
+    }
+} 
