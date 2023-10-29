@@ -8,8 +8,27 @@ import { createComment } from "../../controller/comment-controller.js";
 import { signUp , login} from "../../controller/user-controller.js";
 import { authenticate } from "../../middlewares/authenticate.js";
 
+import upload from "../../config/s3-config.js";
+
+const singleUploader = upload.array('image', 3);
+
+const uploadImage = async (req,res, next)=>{
+    singleUploader(req,res, function(err,data){
+        console.log(data);
+        if(err){
+          return res.status(401).json({
+              error : {err}
+          })
+        }
+        
+        console.log("image url is ", req.files);
+        next();
+    })
+}
+
+
 // Tweet Routes
-router.post("/tweets", authenticate, createTweet);
+router.post("/tweets", uploadImage,  createTweet);
 router.post("/likes/toggle", toggleLike);
 router.get("/tweets/:id", getTweet);
 router.post("/comment", authenticate,createComment);

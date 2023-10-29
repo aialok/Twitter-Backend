@@ -1,15 +1,20 @@
 import { get } from "mongoose";
 import TweetService from "../services/tweet-service.js";
 
+
+
 const tweetService = new TweetService();
+
 
 export const createTweet = async (req, res) => {
   try {
-
+      const images = req.files;
       const data = {
           ...req.body,
-          user : req.user._id
+          image : req.files.map((images)=>images.location)
       }
+
+      console.log(data.image);
 
     const response = await tweetService.create(data);
     return res.status(201).json({
