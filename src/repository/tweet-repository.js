@@ -23,7 +23,7 @@ class TweetRepository extends CrudRepository {
 
   async getAll(offset, limit) {
     try {
-      const tweet = await Tweet.find().limit(limit).lean().skip(offset);
+      const tweet = await Tweet.find();
       return tweet;
     } catch (error) {
       console.log("Error in repository layer", error);
