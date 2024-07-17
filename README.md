@@ -1,4 +1,13 @@
-# Requirements
+# Twitter Backend Clone
+This project is a scalable backend implementation of core Twitter functionalities, built using modern web technologies. It provides RESTful APIs for user authentication, tweet creation and retrieval, following/unfollowing users, and timeline generation.
+Tech Stack:
+
+- Node.js with Express.js for server-side logic and API routing
+- MongoDB for flexible and scalable data storage
+- Passport.js for robust user authentication
+- AWS S3 for efficient media storage (images, videos)
+
+### Features
 
 - User should be able to create a post
     - [The post/Tweet cannot be more than 250 chars]
